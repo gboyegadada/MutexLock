@@ -1,0 +1,34 @@
+{
+    "name": "AlexDisler/MutexLock",
+    "description": "...",
+    "keywords": ["..."],
+    "type": "library",
+    "homepage" : "https://github.com/AlexDisler/MutexLock",
+    "authors": [
+        {
+            "name": "Alex Disler",
+            "email": "alex@binarypattern.com",
+            "homepage": "http://github.com/AlexDisler"
+        }
+    ],
+    "support": {
+        "email": "alex@binarypattern.com",
+        "issues": "https://github.com/AlexDisler/MutexLock"
+    },
+    "require": {
+        "php": ">=5.4",
+        "monolog/monolog": "1.6.*",
+        "colinmollenhour/credis": "1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },    
+    "autoload": {
+        "psr-0": {
+            "App\\": "library/"
+        }
+    },
+    "include-path": [
+        "library/"
+    ]
+}
