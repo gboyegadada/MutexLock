@@ -8,6 +8,31 @@ class Lock
 {
 
     /**
+     * @var Monolog\Logger
+     */
+    private static $_logger = null;
+
+    /**
+     * @var array
+     */
+    private static $_redisConfig = ['host' => 'localhost', 'port' => '6379'];
+
+    /**
+     *
+     * @param Monolog\Logger $logger
+     */
+    public static function init(array $params = [])
+    {
+        if(isset($params['logger']) && $logger instanceof Monolog\Logger) {
+            self::$_logger = $params['logger'];
+        }
+        if (isset($params['host']) || isset($params['port'])) {
+            self::$_redisConfig['host'] = $params['host'];
+            self::$_redisConfig['port'] = $params['port'];
+        }
+    }
+
+    /**
      * Checks if a lock exists, if not, creates it and sets and expiration time
      *
      * @param string $key
@@ -20,15 +45,21 @@ class Lock
         if (!$key) {
             throw LockException('Key must be set');
         }
-        $config = \Zend_Registry::get('config');
         try {
-            $redis = new \Credis_Client($config->cache->redis->host, $config->cache->redis->port);
+            $redis = new \Credis_Client(self::$_redisConfig['host'], self::$_redisConfig['port']);
             $isCreated = $redis->setnx($key, time());
         } catch(Exception $e) {
-            error_log('could not connect to redis');
+            self::$_logger->addEror('could not connect to redis');
         }
         if ($isCreated && $time) {
             $redis->expire($key, $time);
+        }
+        if (self::$_logger) {
+            if ($isCreated) {
+                self::$_logger->addNotice('cron not locked');
+            } else {
+                self::$_logger->addNotice('cron locked');
+            }
         }
         return $isCreated;
     }
