@@ -1,7 +1,7 @@
 {
-    "name": "AlexDisler/MutexLock",
-    "description": "...",
-    "keywords": ["..."],
+    "name": "alex/mutexlock",
+    "description": "MutexLock makes sure that a cron job defined in multiple identical web servers will not execute more than one task at a time. Backed by Redis.",
+    "keywords": ["redit", "cron", "lock"],
     "type": "library",
     "homepage" : "https://github.com/AlexDisler/MutexLock",
     "authors": [
@@ -25,10 +25,7 @@
     },    
     "autoload": {
         "psr-0": {
-            "App\\": "library/"
+            "MutexLock": "lib/"
         }
-    },
-    "include-path": [
-        "library/"
-    ]
+    }
 }
