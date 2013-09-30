@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace MutexLock;
 
 use Monolog\Logger;
 
-class MutexLock
+class Lock
 {
 
     /**
@@ -15,7 +15,7 @@ class MutexLock
      * @return bool indicates if a lock created
      * @throws LockException
      */
-    public static function lock($key, $time = 0)
+    public static function set($key, $time = 0)
     {
         if (!$key) {
             throw LockException('Key must be set');
