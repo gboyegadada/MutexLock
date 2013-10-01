@@ -23,7 +23,7 @@ class Lock
      */
     public static function init(array $params = [])
     {
-        if(isset($params['logger']) && $params['logger'] instanceof Monolog\Logger) {
+        if(isset($params['logger'])) {
             self::$_logger = $params['logger'];
         }
         if (isset($params['host']) || isset($params['port'])) {
