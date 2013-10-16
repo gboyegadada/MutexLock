@@ -49,15 +49,17 @@ class Lock
             $redis = new \Credis_Client(self::$_redisConfig['host'], self::$_redisConfig['port']);
             $isCreated = $redis->setnx($key, time());
         } catch(Exception $e) {
-            self::$_logger->addEror('could not connect to redis');
+            if (self::$_logger) {
+                self::$_logger->addEror('could not connect to redis');
+            }
         }
         if ($isCreated && $time) {
             $redis->expire($key, $time);
         }
         if (self::$_logger) {
-            if ($isCreated) {
+            if ($isCreated && self::$_logger) {
                 self::$_logger->addNotice('cron not locked');
-            } else {
+            } elseif(self::$_logger) {
                 self::$_logger->addNotice('cron locked');
             }
         }
