@@ -26,3 +26,7 @@ if (!MutexLock\Lock::set(LOCK_KEY, LOCK_TIME)) {
     return;
 }
 ```
+
+# License
+
+MIT
