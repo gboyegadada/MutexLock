@@ -2,13 +2,11 @@
 
 namespace MutexLock;
 
-use Monolog\Logger;
-
 class Lock
 {
 
     /**
-     * @var Monolog\Logger
+     * 
      */
     private static $_logger = null;
 
@@ -19,7 +17,6 @@ class Lock
 
     /**
      *
-     * @param Monolog\Logger $logger
      */
     public static function init(array $params = [])
     {
