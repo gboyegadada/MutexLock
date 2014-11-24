@@ -7,12 +7,10 @@
     "authors": [
         {
             "name": "Alex Disler",
-            "email": "alex@binarypattern.com",
             "homepage": "http://github.com/AlexDisler"
         }
     ],
     "support": {
-        "email": "alex@binarypattern.com",
         "issues": "https://github.com/AlexDisler/MutexLock"
     },
     "require": {
