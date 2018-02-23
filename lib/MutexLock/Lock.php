@@ -47,7 +47,7 @@ class Lock
             $isCreated = $redis->setnx($key, time());
         } catch(Exception $e) {
             if (self::$_logger) {
-                self::$_logger->addEror('could not connect to redis');
+                self::$_logger->addError('could not connect to redis');
             }
         }
         if ($isCreated && $time) {
